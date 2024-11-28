@@ -12,13 +12,15 @@ class MyServer(BaseHTTPRequestHandler):
     Специальный класс, который отвечает за
     обработку входящих запросов от клиентов
     """
+
     def do_GET(self):
-        """ Метод для обработки входящих GET-запросов
-        """
+        """Метод для обработки входящих GET-запросов"""
         self.send_response(200)  # Отправка кода ответа
-        self.send_header("Content-type", "text/html")  # Отправка типа данных, который будет передаваться
+        self.send_header(
+            "Content-type", "text/html"
+        )  # Отправка типа данных, который будет передаваться
         self.end_headers()
-        with open(file_contact_html, encoding='utf-8') as f:
+        with open(file_contact_html, encoding="utf-8") as f:
             content = f.read()
         # Завершение формирования заголовков ответа
         self.wfile.write(bytes(content, "utf-8"))  # Тело ответа
